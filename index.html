@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Resmi Pemerintah Desa Kuwik</title>
+    <meta name="description" content="Website Resmi Pemerintah Desa Kuwik - Informasi terbaru seputar pemerintahan, pelayanan, dan kegiatan desa">
+    <meta name="theme-color" content="#2e7d32">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/Kediri.png">
+    
+    <!-- Styles -->
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary-color: #ffc107;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .logo-subtext {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500"><rect width="1200" height="500" fill="%232e7d32"/><path d="M0,250 Q300,150 600,250 T1200,250 L1200,500 L0,500 Z" fill="%231b5e20"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ffb300;
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .welcome-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        
+        .greeting {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .greeting-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .greeting-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+        
+        .greeting-text p {
+            margin-bottom: 1rem;
+        }
+        
+        .signature {
+            margin-top: 1rem;
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 2rem 1rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-section a:hover {
+            opacity: 1;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                width: 100%;
+                display: none;
+                margin-top: 1rem;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .greeting {
+                flex-direction: column;
+            }
+            
+            .greeting-image {
+                order: -1;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .greeting {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .greeting-image {
+                flex: 0 0 250px;
+                margin-right: 2rem;
+            }
+        }
+        
+        /* PWA Install Prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 1rem;
+            max-width: 300px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .install-prompt.active {
+            display: block;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        .install-prompt p {
+            margin-bottom: 1rem;
+        }
+        
+        .install-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .install-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .install-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .install-secondary {
+            background: #e0e0e0;
+            color: var(--text-color);
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <img src="images/Kediri.png" alt="Logo Desa" width="120px" height="70">
+                <div>
+                    <div class="logo-text">Desa Kuwik</div>
+                    <div class="logo-subtext">Website Resmi Pemerintah Desa</div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="active">Beranda</a></li>
+                    <li><a href="profil.html">Profil Desa</a></li>
+                    <li><a href="pemdes.html">Pemerintahan</a></li>
+                    <li><a href="pelayanan.html">Pelayanan</a></li>
+                    <li><a href="berita.html">Berita</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Selamat Datang di Website Resmi Pemerintah Desa Kuwik</h1>
+            <p>Portal informasi terpercaya seputar pemerintahan, pelayanan, dan kegiatan Desa Kuwik</p>
+            <a href="#sambutan" class="btn">Baca Sambutan Kepala Desa</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Sambutan Kepala Desa -->
+        <section class="welcome-section" id="sambutan">
+            <h2 class="section-title">Sambutan Kepala Desa</h2>
+            <div class="greeting">
+                <div class="greeting-image">
+                    <!-- Placeholder untuk foto kepala desa -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" style="background: #e0e0e0; border-radius: 8px;">
+                        <rect width="300" height="300" fill="#e0e0e0"/>
+                        <circle cx="150" cy="120" r="60" fill="#bdbdbd"/>
+                        <rect x="90" y="190" width="120" height="80" fill="#bdbdbd"/>
+                        <text x="150" y="290" text-anchor="middle" fill="#757575" font-size="14">Foto Kepala Desa</text>
+                    </svg>
+                </div>
+                <div class="greeting-content">
+                    <div class="greeting-text">
+                        <p>Assalamu'alaikum Warahmatullahi Wabarakatuh,</p>
+                        <p>Selamat datang di Website Resmi Pemerintah Desa Kuwik. Website ini hadir sebagai media informasi dan komunikasi antara Pemerintah Desa dengan masyarakat, serta sebagai sarana transparansi dan akuntabilitas penyelenggaraan pemerintahan desa.</p>
+                        <p>Kami berkomitmen untuk terus meningkatkan pelayanan kepada masyarakat, mengoptimalkan potensi desa, dan membangun Desa Kuwik yang lebih maju, mandiri, dan sejahtera. Semoga dengan adanya website ini, dapat mempererat silaturahmi dan meningkatkan partisipasi masyarakat dalam pembangunan desa.</p>
+                        <p>Terima kasih atas kunjungan Anda. Mari bersama-sama kita wujudkan Desa Kuwik yang lebih baik.</p>
+                        <p class="signature">Wassalamu'alaikum Warahmatullahi Wabarakatuh,</p>
+                        <p class="signature">Ahmad Shodikin<br>Kepala Desa Kuwik</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fitur Layanan -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Pelayanan Administrasi</h3>
+                <p>Layanan pengurusan surat menyurat dan administrasi kependudukan</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📰</div>
+                <h3>Berita Desa</h3>
+                <p>Informasi terbaru seputar kegiatan dan perkembangan Desa Kuwik</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Data & Statistik</h3>
+                <p>Data kependudukan dan statistik perkembangan Desa Kuwik</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Aspirasi Masyarakat</h3>
+                <p>Saluran penyampaian aspirasi dan pengaduan masyarakat</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Kontak Kami</h3>
+                <ul>
+                    <li>📞 (0331) 123456</li>
+                    <li>📧 info@desakuwik.id</li>
+                    <li>📍 Jl. Raya Kuwik No. 123</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Menu Cepat</h3>
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#">Profil Desa</a></li>
+                    <li><a href="#">Struktur Organisasi</a></li>
+                    <li><a href="#">Galeri</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan</h3>
+                <ul>
+                    <li><a href="#">Surat Keterangan</a></li>
+                    <li><a href="#">Surat Pengantar</a></li>
+                    <li><a href="#">SKTM</a></li>
+                    <li><a href="#">Layanan Lainnya</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Media Sosial</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Pemerintah Desa Kuwik. Semua Hak Dilindungi.
+        </div>
+    </footer>
+
+    <!-- PWA Install Prompt -->
+    <div class="install-prompt" id="installPrompt">
+        <p>Pasang aplikasi Desa Kuwik untuk akses yang lebih cepat?</p>
+        <div class="install-buttons">
+            <button class="install-btn install-primary" id="installBtn">Pasang</button>
+            <button class="install-btn install-secondary" id="cancelInstallBtn">Nanti</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // PWA Functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+        const cancelInstallBtn = document.getElementById('cancelInstallBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            
+            // Show the install prompt after a delay
+            setTimeout(() => {
+                installPrompt.classList.add('active');
+            }, 3000);
+        });
+
+        installBtn.addEventListener('click', (e) => {
+            // Hide the install prompt
+            installPrompt.classList.remove('active');
+            
+            // Show the install prompt
+            deferredPrompt.prompt();
+            
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            });
+        });
+
+        cancelInstallBtn.addEventListener('click', (e) => {
+            installPrompt.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

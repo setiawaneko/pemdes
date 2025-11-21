@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemerintahan Desa - Website Resmi Pemerintah Desa Kuwik</title>
+    <meta name="description" content="Struktur Organisasi, Visi Misi, dan Data Pemerintahan Desa Kuwik">
+    <meta name="theme-color" content="#2e7d32">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/Kediri.png">
+    
+    <!-- Styles -->
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary-color: #ffc107;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .logo-subtext {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500"><rect width="1200" height="500" fill="%232e7d32"/><path d="M0,250 Q300,150 600,250 T1200,250 L1200,500 L0,500 Z" fill="%231b5e20"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ffb300;
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        
+        /* Pemerintahan Container */
+        .pemerintahan-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+        
+        .pemerintahan-content {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .pemerintahan-sidebar {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .pemerintahan-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .pemerintahan-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* SOTK Styles */
+        .sotk-structure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem 0;
+        }
+        
+        .structure-level {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+            width: 100%;
+        }
+        
+        .position-card {
+            background: var(--light-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .position-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .position-card.primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .position-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .position-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .position-holder {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Visi Misi Styles */
+        .visi-misi-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .visi-box, .misi-box {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .misi-list {
+            list-style-type: none;
+        }
+        
+        .misi-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .misi-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        /* BPD Styles */
+        .bpd-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .member-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .member-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        /* Lembaga Desa Styles */
+        .lembaga-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .lembaga-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .lembaga-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .lembaga-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        /* Data Desa Styles */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .data-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .data-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .data-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+        
+        /* Evaluasi Styles */
+        .evaluasi-content {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .progress-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 4px;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar-menu {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .info-box {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-box h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 2rem 1rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-section a:hover {
+            opacity: 1;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                width: 100%;
+                display: none;
+                margin-top: 1rem;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .pemerintahan-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pemerintahan-sidebar {
+                order: -1;
+            }
+            
+            .visi-misi-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .structure-level {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* PWA Install Prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 1rem;
+            max-width: 300px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .install-prompt.active {
+            display: block;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        .install-prompt p {
+            margin-bottom: 1rem;
+        }
+        
+        .install-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .install-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .install-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .install-secondary {
+            background: #e0e0e0;
+            color: var(--text-color);
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/Kediri.png" alt="Logo Desa" width="120px" height="70">
+                <div>
+                    <div class="logo-text">Desa Kuwik</div>
+                    <div class="logo-subtext">Website Resmi Pemerintah Desa</div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="profil.html">Profil Desa</a></li>
+                    <li><a href="pemdes.html" class="active">Pemerintahan</a></li>
+                    <li><a href="layanan.html">Pelayanan</a></li>
+                    <li><a href="berita.html">Berita</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Pemerintahan Desa Kuwik</h1>
+            <p>Struktur Organisasi, Visi Misi, dan Data Pemerintahan Desa Kuwik</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="pemerintahan-container">
+            <!-- Pemerintahan Content -->
+            <div class="pemerintahan-content">
+                <!-- SOTK Desa -->
+                <section class="pemerintahan-section" id="sotk">
+                    <h2 class="section-title">Struktur Organisasi dan Tata Kerja (SOTK)</h2>
+                    <p>Struktur organisasi Pemerintah Desa Kuwik disusun untuk menjalankan fungsi pemerintahan, pembangunan, dan pelayanan masyarakat secara efektif dan efisien.</p>
+                    
+                    <div class="sotk-structure">
+                        <!-- Level 1 - Kepala Desa -->
+                        <div class="structure-level">
+                            <div class="position-card primary">
+                                <div class="position-icon">👨‍💼</div>
+                                <div class="position-name">Kepala Desa</div>
+                                <div class="position-holder">Ahmad Shodikin</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Level 2 - Sekretaris -->
+                        <div class="structure-level">
+                            <div class="position-card">
+                                <div class="position-icon">📝</div>
+                                <div class="position-name">Sekretaris Desa</div>
+                                <div class="position-holder">Budi Santoso</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Level 3 - Kasi -->
+                        <div class="structure-level">
+                            <div class="position-card">
+                                <div class="position-icon">🏠</div>
+                                <div class="position-name">Kasi Pemerintahan</div>
+                                <div class="position-holder">Siti Aminah</div>
+                            </div>
+                            <div class="position-card">
+                                <div class="position-icon">💼</div>
+                                <div class="position-name">Kasi Kesejahteraan</div>
+                                <div class="position-holder">Rina Wijaya</div>
+                            </div>
+                            <div class="position-card">
+                                <div class="position-icon">🏗️</div>
+                                <div class="position-name">Kasi Pelayanan</div>
+                                <div class="position-holder">Dedi Pratama</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Level 4 - Kaur -->
+                        <div class="structure-level">
+                            <div class="position-card">
+                                <div class="position-icon">💰</div>
+                                <div class="position-name">Kaur Keuangan</div>
+                                <div class="position-holder">Maya Sari</div>
+                            </div>
+                            <div class="position-card">
+                                <div class="position-icon">📊</div>
+                                <div class="position-name">Kaur Perencanaan</div>
+                                <div class="position-holder">Joko Susilo</div>
+                            </div>
+                            <div class="position-card">
+                                <div class="position-icon">👥</div>
+                                <div class="position-name">Kaur Umum</div>
+                                <div class="position-holder">Linda Hartati</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Visi Misi -->
+                <section class="pemerintahan-section" id="visi-misi">
+                    <h2 class="section-title">Visi dan Misi Desa Kuwik</h2>
+                    
+                    <div class="visi-misi-container">
+                        <div class="visi-box">
+                            <h3>Visi Desa</h3>
+                            <p>"Terwujudnya Desa Kuwik yang Maju, Mandiri, dan Sejahtera Berlandaskan Gotong Royong dan Kearifan Lokal"</p>
+                        </div>
+                        
+                        <div class="misi-box">
+                            <h3>Misi Desa</h3>
+                            <ul class="misi-list">
+                                <li>Meningkatkan kualitas pelayanan publik yang transparan dan akuntabel</li>
+                                <li>Mengoptimalkan potensi ekonomi lokal melalui pengembangan UMKM dan pariwisata</li>
+                                <li>Memperkuat infrastruktur dasar untuk mendukung pembangunan desa</li>
+                                <li>Meningkatkan kualitas sumber daya manusia melalui pendidikan dan pelatihan</li>
+                                <li>Melestarikan nilai-nilai budaya dan kearifan lokal dalam pembangunan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Badan Permusyawaratan Desa -->
+                <section class="pemerintahan-section" id="bpd">
+                    <h2 class="section-title">Badan Permusyawaratan Desa (BPD)</h2>
+                    <p>BPD merupakan lembaga yang melaksanakan fungsi pemerintahan yang anggotanya merupakan wakil dari penduduk desa berdasarkan keterwakilan wilayah dan ditetapkan secara demokratis.</p>
+                    
+                    <div class="bpd-members">
+                        <div class="member-card">
+                            <div class="member-photo">👨‍💼</div>
+                            <div class="member-name">Drs. Suparman</div>
+                            <div class="member-position">Ketua BPD</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-photo">👩‍💼</div>
+                            <div class="member-name">Sari Dewi, S.Pd.</div>
+                            <div class="member-position">Wakil Ketua</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-photo">👨‍💼</div>
+                            <div class="member-name">Bambang Sutrisno</div>
+                            <div class="member-position">Sekretaris</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-photo">👩‍💼</div>
+                            <div class="member-name">Mira Handayani</div>
+                            <div class="member-position">Anggota</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-photo">👨‍💼</div>
+                            <div class="member-name">Teguh Prasetyo</div>
+                            <div class="member-position">Anggota</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Lembaga Desa -->
+                <section class="pemerintahan-section" id="lembaga">
+                    <h2 class="section-title">Lembaga Desa</h2>
+                    <p>Berbagai lembaga yang berperan aktif dalam mendukung pembangunan dan pemberdayaan masyarakat Desa Kuwik.</p>
+                    
+                    <div class="lembaga-grid">
+                        <div class="lembaga-card">
+                            <div class="lembaga-icon">👨‍🌾</div>
+                            <h3>PKK Desa</h3>
+                            <p>Pemberdayaan Kesejahteraan Keluarga dalam pembangunan desa</p>
+                        </div>
+                        <div class="lembaga-card">
+                            <div class="lembaga-icon">🚒</div>
+                            <h3>Linmas</h3>
+                            <p>Perlindungan Masyarakat untuk keamanan dan ketertiban</p>
+                        </div>
+                        <div class="lembaga-card">
+                            <div class="lembaga-icon">🏥</div>
+                            <h3>Posyandu</h3>
+                            <p>Pelayanan kesehatan ibu dan anak serta lansia</p>
+                        </div>
+                        <div class="lembaga-card">
+                            <div class="lembaga-icon">👨‍👩‍👧‍👦</div>
+                            <h3>Karang Taruna</h3>
+                            <p>Wadah pengembangan generasi muda desa</p>
+                        </div>
+                        <div class="lembaga-card">
+                            <div class="lembaga-icon">🕌</div>
+                            <h3>Lembaga Keagamaan</h3>
+                            <p>Pengembangan kehidupan beragama di desa</p>
+                        </div>
+                        <div class="lembaga-card">
+                            <div class="lembaga-icon">💼</div>
+                            <h3>BUMDes dan Koperasi Desa</h3>
+                            <p>Badan Usaha Milik Desa serta Koperasi Desa untuk pengembangan ekonomi</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data Desa -->
+                <section class="pemerintahan-section" id="data">
+                    <h2 class="section-title">Data Desa</h2>
+                    <p>Data kependudukan dan statistik perkembangan Desa Kuwik tahun 2023.</p>
+                    
+                    <div class="data-grid">
+                        <div class="data-card">
+                            <div class="data-number">3.245</div>
+                            <div class="data-label">Jiwa Penduduk</div>
+                        </div>
+                        <div class="data-card">
+                            <div class="data-number">875</div>
+                            <div class="data-label">Kepala Keluarga</div>
+                        </div>
+                        <div class="data-card">
+                            <div class="data-number">1.580</div>
+                            <div class="data-label">Penduduk Laki-laki</div>
+                        </div>
+                        <div class="data-card">
+                            <div class="data-number">1.665</div>
+                            <div class="data-label">Penduduk Perempuan</div>
+                        </div>
+                        <div class="data-card">
+                            <div class="data-number">245</div>
+                            <div class="data-label">Balita</div>
+                        </div>
+                        <div class="data-card">
+                            <div class="data-number">185</div>
+                            <div class="data-label">Lansia</div>
+                        </div>
+                        <div class="data-card">
+                            <div class="data-number">45</div>
+                            <div class="data-label">Penyandang Disabilitas</div>
+                        </div>
+                        <div class="data-card">
+                            <div class="data-number">98%</div>
+                            <div class="data-label">Melek Huruf</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Evaluasi Kerja -->
+                <section class="pemerintahan-section" id="evaluasi">
+                    <h2 class="section-title">Evaluasi Kinerja Pemerintahan</h2>
+                    <p>Monitoring dan evaluasi capaian kinerja pemerintahan desa dalam melaksanakan program pembangunan.</p>
+                    
+                    <div class="evaluasi-content">
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Program Infrastruktur Jalan</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Pemberdayaan UMKM</span>
+                                <span>72%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 72%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Pelayanan Administrasi</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Program Kesehatan</span>
+                                <span>78%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Pendidikan dan Pelatihan</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="pemerintahan-sidebar">
+                <h3>Menu Pemerintahan</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#sotk" class="active">SOTK Desa</a></li>
+                    <li><a href="#visi-misi">Visi & Misi</a></li>
+                    <li><a href="#bpd">BPD</a></li>
+                    <li><a href="#lembaga">Lembaga Desa</a></li>
+                    <li><a href="#data">Data Desa</a></li>
+                    <li><a href="#evaluasi">Evaluasi Kerja</a></li>
+                </ul>
+                
+                <div class="info-box">
+                    <h3>Informasi Penting</h3>
+                    <p><strong>Jadwal Layanan:</strong> Senin-Jumat, 08.00-14.00 WIB</p>
+                    <p><strong>Lokasi Kantor:</strong> Jl. Raya Kuwik No. 123</p>
+                    <p><strong>Telepon:</strong> (0331) 123456</p>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Dokumen Terbaru</h3>
+                    <p>• APBDes 2023</p>
+                    <p>• Laporan Kinerja</p>
+                    <p>• Peraturan Desa</p>
+                    <p>• Rencana Kerja</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Kontak Kami</h3>
+                <ul>
+                    <li>📞 (0331) 123456</li>
+                    <li>📧 info@desakuwik.id</li>
+                    <li>📍 Jl. Raya Kuwik No. 123</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Menu Cepat</h3>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="profil.html">Profil Desa</a></li>
+                    <li><a href="pemdes.html">Pemerintahan</a></li>
+                    <li><a href="#">Galeri</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan</h3>
+                <ul>
+                    <li><a href="#">Surat Keterangan</a></li>
+                    <li><a href="#">Surat Pengantar</a></li>
+                    <li><a href="#">SKTM</a></li>
+                    <li><a href="#">Layanan Lainnya</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Media Sosial</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Pemerintah Desa Kuwik. Semua Hak Dilindungi.
+        </div>
+    </footer>
+
+    <!-- PWA Install Prompt -->
+    <div class="install-prompt" id="installPrompt">
+        <p>Pasang aplikasi Desa Kuwik untuk akses yang lebih cepat?</p>
+        <div class="install-buttons">
+            <button class="install-btn install-primary" id="installBtn">Pasang</button>
+            <button class="install-btn install-secondary" id="cancelInstallBtn">Nanti</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // PWA Functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+        const cancelInstallBtn = document.getElementById('cancelInstallBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            
+            // Show the install prompt after a delay
+            setTimeout(() => {
+                installPrompt.classList.add('active');
+            }, 3000);
+        });
+
+        installBtn.addEventListener('click', (e) => {
+            // Hide the install prompt
+            installPrompt.classList.remove('active');
+            
+            // Show the install prompt
+            deferredPrompt.prompt();
+            
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            });
+        });
+
+        cancelInstallBtn.addEventListener('click', (e) => {
+            installPrompt.classList.remove('active');
+        });
+
+        // Smooth scrolling for sidebar menu
+        document.querySelectorAll('.sidebar-menu a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                
+                // Update active class
+                document.querySelectorAll('.sidebar-menu a').forEach(a => {
+                    a.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Animate progress bars on scroll
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        }
+
+        // Observe when evaluasi section comes into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateProgressBars();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const evaluasiSection = document.getElementById('evaluasi');
+        if (evaluasiSection) {
+            observer.observe(evaluasiSection);
+        }
+    </script>
+</body>
+</html>
